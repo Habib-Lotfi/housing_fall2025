@@ -46,5 +46,25 @@ user_options
 
 if st.button('Predict'):
     data = json.dumps(user_options, indent=2)
-    r = requests.post("http://127.0.0.1:8000/predict", data = data)
+    r = requests.post("http://localhost:8000/predict", data = data)
     st.write(r.json())
+
+
+# if st.button("Predict"):
+#     # Prepare data for POST request
+#     try:
+#         r = requests.post(
+#             "http://localhost:8002/predict",
+#             json=user_options  # Automatically formats the JSON
+#         )
+#         if r.status_code == 200:
+#             try:
+#                 st.write("Prediction:", r.json())
+#             except json.JSONDecodeError:
+#                 st.error("Invalid JSON received from the server.")
+#                 st.write("Response Text:", r.text)
+#         else:
+#             st.error(f"Error: {r.status_code}")
+#             st.write("Response Text:", r.text)
+#     except requests.exceptions.RequestException as e:
+#         st.error(f"Failed to connect to the server: {e}")
